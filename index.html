@@ -3,7 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Timezone Dropdown</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.6.0/moment-timezone-with-data-1970-2030.min.js"></script>
+    <title>JS Timezones Select</title>
   </head>
-  <body></body>
+  <body>
+    <h2>Select a City</h2>
+    <select id="city">
+      <option value="">Choose a city</option>
+      <option value="Europe/Paris">Paris 🇫🇷</option>
+      <option value="Asia/Tokyo">Tokyo 🇯🇵</option>
+      <option value="Australia/Sydney">Sydney 🇦🇺</option>
+    </select>
+
+    <script>
+      let citySelect = document.querySelector("#city");
+
+      citySelect.addEventListener("change", function (event) {
+        let city = event.target.value;
+
+        if (city) {
+          let cityTime = moment().tz(city).format("dddd, MMMM D, YYYY h:mm A");
+          alert(`It is ${cityTime} in ${city}`);
+        }
+      });
+    </script>
+  </body>
 </html>
